@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Recetas.Front.Views.Recetas.NuevaRecetaPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Shell.NavBarIsVisible="False"
+             Title="NuevaRecetaPage">
+     <Page.Behaviors>
+        <toolkit:StatusBarBehavior  StatusBarColor="#ff5733"
+                                    StatusBarStyle="LightContent"></toolkit:StatusBarBehavior>
+    </Page.Behaviors>
+        <Grid RowDefinitions="10*,10*,80*"
+             BackgroundColor="Transparent"
+             VerticalOptions="FillAndExpand"
+             HorizontalOptions="FillAndExpand"
+              RowSpacing="10">
+            <Border VerticalOptions="FillAndExpand"
+                   HorizontalOptions="FillAndExpand"
+                   BackgroundColor="#F9F9F9"
+                   StrokeShape="RoundRectangle 0,0,0,0"
+                   Grid.Row="0"
+                   Stroke="#F9F9F9">
+            <Grid HorizontalOptions="Fill"
+                  Grid.ColumnDefinitions="90*,10*"
+                  VerticalOptions="CenterAndExpand"
+                  Padding="10">
+                <Label Margin="0,14,0,0"
+                       Text="Nueva Receta"
+                       VerticalTextAlignment="Center"
+                       FontFamily="Poppins-MediumItalic"
+                       FontSize="24"
+                       Grid.Column="0"
+                       TextColor="#b7b6b6"/>
+                <Image Grid.Column="1"
+                       Source="icon_cerrar"
+                       Aspect="AspectFit"
+                       HeightRequest="32"
+                       WidthRequest="32">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Cerrar_Tapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                </Grid>
+        </Border>
+            
+            <Label Text="Agregar Nueva Receta"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   Grid.Row="1"
+                   FontAttributes="Bold"
+                   FontSize="20"
+                   Margin="0,0,0,0"/>
+            
+          <ScrollView Grid.Row="2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid RowDefinitions="*,*,*,*,*,*,*,*" ColumnDefinitions="*,*" RowSpacing="15">
+                    <Label Grid.Column="0"
+                           Grid.Row="0"
+                           Text="Nombre de la Receta"
+                           HorizontalOptions="StartAndExpand"
+                           VerticalOptions="CenterAndExpand"/>
+                    <Entry x:Name="EntryNombreReceta"
+                           Placeholder="Nombre de la Receta"
+                           HorizontalTextAlignment="Center"
+                           FontSize="17"
+                           Grid.Row="0"
+                           Grid.Column="1"
+                           TextChanged="ValidarCampo"
+                           Text="{Binding RecetaSeleccionada.NombreReceta}">
+                        </Entry>
+
+                    <Label Grid.Column="0"
+                           Grid.Row="1"
+                           Text="Ingredientes"
+                           HorizontalOptions="StartAndExpand"
+                           VerticalOptions="CenterAndExpand"/>
+                    <Editor x:Name="EntryIngredientes"
+                           Placeholder="Ingredientes"
+                           HorizontalTextAlignment="Center"
+                           FontSize="17"
+                           Grid.Row="1"
+                           Grid.Column="1"
+                           Text="{Binding RecetaSeleccionada.Ingredientes}"/>
+
+                    <Label Grid.Column="0"
+                           Grid.Row="2"
+                           Text="Preparación"
+                           HorizontalOptions="StartAndExpand"
+                           VerticalOptions="CenterAndExpand"/>
+                    <Editor x:Name="EntryPreparacion"
+                           Placeholder="Preparación"
+                           HorizontalTextAlignment="Center"
+                           FontSize="17"
+                           Grid.Row="2"
+                           Grid.Column="1"
+                           Text="{Binding RecetaSeleccionada.Preparacion}"/>
+
+                    <Label Grid.Column="0"
+                           Grid.Row="3"
+                           Text="Tiempo de Preparación (min)"
+                           HorizontalOptions="StartAndExpand"
+                           VerticalOptions="CenterAndExpand"/>
+                    <Entry x:Name="EntryTiempoPreparacion"
+                           Placeholder="Tiempo de Preparación"
+                           HorizontalTextAlignment="Center"
+                           FontSize="17"
+                           Grid.Row="3"
+                           Grid.Column="1"
+                           Text="{Binding RecetaSeleccionada.TiempoPreparacion}"/>
+
+                    <Label Grid.Column="0"
+                           Grid.Row="4"
+                           Text="Dificultad"
+                           HorizontalOptions="StartAndExpand"
+                           VerticalOptions="CenterAndExpand"/>
+                    <Picker Title="Seleccionar Dificultad" Grid.Row="4" HorizontalOptions="CenterAndExpand" x:Name="Dificultad" Grid.Column="1">
+                       <Picker.Items>
+                            <x:String>Facil</x:String>
+                            <x:String>Medio</x:String>
+                            <x:String>Dificil</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Label Grid.Column="0"
+                           Grid.Row="5"
+                           Text="Imagen"
+                           HorizontalOptions="StartAndExpand"
+                           VerticalOptions="CenterAndExpand"/>
+                    <Entry x:Name="EntryImagen"
+                           Placeholder="Imagen"
+                           HorizontalTextAlignment="Center"
+                           FontSize="17"
+                           Grid.Row="5"
+                           Grid.Column="1"
+                           Text="{Binding RecetaSeleccionada.ImagenSourceReceta}"/>
+
+                    <Button Text="Guardar"
+                            WidthRequest="150"
+                            HeightRequest="45"
+                            Grid.Row="6"
+                            Grid.Column="0"
+                            HorizontalOptions="CenterAndExpand"
+                            VerticalOptions="CenterAndExpand"
+                            Clicked="GuardarReceta"/>
+                    <Button Text="Cancelar"
+                            WidthRequest="150"
+                            HeightRequest="45"
+                            Grid.Row="6"
+                            Grid.Column="1"
+                            HorizontalOptions="CenterAndExpand"
+                            VerticalOptions="CenterAndExpand"
+                            Clicked="CancelarClicked"/>
+                </Grid>
+                </ScrollView>
+            </Grid>
+</ContentPage>

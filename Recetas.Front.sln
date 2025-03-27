@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1706.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recetas.Front", "Recetas.Front\Recetas.Front.csproj", "{453D13F0-C3D8-4D5F-BACF-24B2A6905041}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recetas.Dominio", "Recetas.Dominio\Recetas.Dominio.csproj", "{804A4DA9-5C7D-4A13-A0B3-64924555C2DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{453D13F0-C3D8-4D5F-BACF-24B2A6905041}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{453D13F0-C3D8-4D5F-BACF-24B2A6905041}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{453D13F0-C3D8-4D5F-BACF-24B2A6905041}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{453D13F0-C3D8-4D5F-BACF-24B2A6905041}.Release|Any CPU.Build.0 = Release|Any CPU
+		{804A4DA9-5C7D-4A13-A0B3-64924555C2DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{804A4DA9-5C7D-4A13-A0B3-64924555C2DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{804A4DA9-5C7D-4A13-A0B3-64924555C2DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{804A4DA9-5C7D-4A13-A0B3-64924555C2DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3E27CC63-C3C2-4009-BB7B-CD1FCB018131}
+	EndGlobalSection
+EndGlobal

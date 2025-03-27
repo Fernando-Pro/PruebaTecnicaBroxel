@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:model="clr-namespace:Recetas.Dominio.Operacion;assembly=Recetas.Dominio"
+             x:Class="Recetas.Front.Views.HomePage"
+             Shell.NavBarIsVisible="False"
+             Title="HomePage">
+    <Page.Behaviors>
+        <toolkit:StatusBarBehavior  StatusBarColor="#ff5733"
+                                    StatusBarStyle="LightContent"></toolkit:StatusBarBehavior>
+    </Page.Behaviors>
+    <VerticalStackLayout VerticalOptions="FillAndExpand"
+                         HorizontalOptions="FillAndExpand">
+       <Grid RowDefinitions="10*,10*,80*"
+             BackgroundColor="Transparent"
+             VerticalOptions="FillAndExpand"
+             HorizontalOptions="FillAndExpand"
+             RowSpacing="10">
+           <Border VerticalOptions="FillAndExpand"
+                   HorizontalOptions="FillAndExpand"
+                   BackgroundColor="#F9F9F9"
+                   StrokeShape="RoundRectangle 0,0,0,0"
+                   Grid.Row="0"
+                   Stroke="#F9F9F9">
+            <Grid HorizontalOptions="Fill"
+                  Grid.ColumnDefinitions="90*,10*"
+                  VerticalOptions="CenterAndExpand"
+                  Padding="10">
+                <Label Margin="0,14,0,0"
+                       Text="Recetas"
+                       VerticalTextAlignment="Center"
+                       FontFamily="Poppins-MediumItalic"
+                       FontSize="24"
+                       Grid.Column="0"
+                       TextColor="#b7b6b6"/>
+                <Image Grid.Column="1"
+                       Source="icon_agregar"
+                       Aspect="AspectFit"
+                       HeightRequest="32"
+                       WidthRequest="32">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="AgregarReceta_Tapped"/>
+                    </Image.GestureRecognizers>
+
+                </Image>
+                </Grid>
+        </Border>
+           <HorizontalStackLayout HorizontalOptions="FillAndExpand"
+                                  VerticalOptions="FillAndExpand"
+                                  Grid.Row="1">
+
+               <SearchBar Text="{Binding FiltroIngresado}"
+                          x:Name="FiltroRecetas"
+                          Placeholder="Buscar Recetas">
+                   <SearchBar.Behaviors>
+                        <toolkit:EventToCommandBehavior EventName="TextChanged"
+                                                        Command="{Binding FilterCommand}"/>
+                   </SearchBar.Behaviors>
+               </SearchBar>
+           </HorizontalStackLayout>
+                <VerticalStackLayout Grid.Row="2"
+                                     VerticalOptions="FillAndExpand"
+                                     HorizontalOptions="FillAndExpand">
+                    <Grid RowDefinitions="20*,80*">
+                        <Border Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40">
+                            <Grid ColumnDefinitions="*,*,*,*">
+                                <Label  Text="Nombre" Grid.Column="0" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" VerticalOptions="CenterAndExpand"/>
+                                <Label  Text="Tiempo (min.)" Grid.Column="1" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" VerticalOptions="CenterAndExpand"/>
+                                <Label  Text="Dificultad" Grid.Column="2" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" VerticalOptions="CenterAndExpand"/>
+                                <Label  Text="Imagen" Grid.Column="3" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" VerticalOptions="CenterAndExpand"/>
+
+                            </Grid>
+                        </Border>
+                        <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0,10,0,0">
+                            <ScrollView>
+                            <ListView x:Name="ListRecetas"
+                              VerticalOptions="FillAndExpand"
+                              BackgroundColor="Transparent"
+                              ItemTapped="ListRecetas_ItemSeleccionado"
+                              IsVisible="True"
+                              ItemsSource="{Binding recetas}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate >
+                                <ViewCell Height="800">
+                                    <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="10" Margin="20,0,0,0">
+                                        <!--<Label Grid.Column="0"
+                                               Grid.Row="0"
+                                               Text="Nombre Receta"
+                                               FontAttributes="Bold"/>-->
+                                        <Label x:Name="lblNombreReceta"
+                                               Grid.Column="0"
+                                               Grid.Row="1"
+                                               FontAttributes="Bold"
+                                               FontSize="12"
+                                               HorizontalTextAlignment="Center"
+                                               VerticalOptions="CenterAndExpand"
+                                               Text="{Binding NombreReceta}"/>
+
+                                        <!--<Label Grid.Column="1"
+                                               Grid.Row="0"
+                                               Text="Tiempo Preparacion"
+                                               FontAttributes="Bold"/>-->
+                                        <Label x:Name="lblTiempoPreparacion"
+                                               Grid.Column="1"
+                                               Grid.Row="1"
+                                               FontAttributes="Bold"
+                                               FontSize="12"
+                                               HorizontalTextAlignment="Center"
+                                               VerticalOptions="CenterAndExpand"
+                                               Text="{Binding TiempoPreparacion}"/>
+
+
+                                         <!--<Label Grid.Column="2"
+                                               Grid.Row="0"
+                                               Text="Dificultad"
+                                                FontAttributes="Bold"/>-->
+                                        <Label x:Name="lblDificultad"
+                                               Grid.Column="2"
+                                               Grid.Row="1"
+                                               FontAttributes="Bold"
+                                               FontSize="12"
+                                               HorizontalTextAlignment="Center"
+                                               VerticalOptions="CenterAndExpand"
+                                               Text="{Binding Dificultad}"/>
+
+                                        <Image x:Name="ImagenReceta"
+                                               Grid.Column="3"
+                                               Grid.Row="1"
+                                               Grid.RowSpan = "2"
+                                               Aspect="AspectFit"
+                                               Source="recetas_image"
+                                               VerticalOptions="CenterAndExpand"
+                                               HorizontalOptions="EndAndExpand"/>
+                                    </Grid>
+                                    </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                                </ScrollView>
+                        </StackLayout>
+                        </Grid>
+                </VerticalStackLayout>
+       </Grid>
+    </VerticalStackLayout>
+</ContentPage>
